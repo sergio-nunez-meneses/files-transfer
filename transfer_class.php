@@ -1,5 +1,6 @@
 <?php
 require_once 'db.php';
+require_once 'functions.php';
 
 class Transfer extends Database
 {
@@ -63,16 +64,21 @@ class Transfer extends Database
         // remove files from $directory
       	for ($i = 0; $i < $total_files; $i++) {
       		$file_name = $_FILES['files']['name'][$i];
-      		// unlink($directory . $file_name);
       		unlink($file_name);
       	}
-
-        // remove .zip extension
-        $file_name = preg_replace('/\\.[^.\\s]{3,4}$/', '', $zip_name);
       }
     }
 
+    // check .zip file size
+    if (filesize($zip_name) > 2000000) {
+      $error_msg .= '<p>files size must not exceed 4Go</p>';
+      $error = true;
+    }
+
     if (!$error) {
+      // remove .zip extension
+      $file_name = preg_replace('/\\.[^.\\s]{3,4}$/', '', $zip_name);
+
       // store sender in db and get its id
       $this->run_query('INSERT INTO senders VALUES (NULL, :sender)', ['sender' => $sender]);
       $stmt = $this->run_query('SELECT LAST_INSERT_ID()');
@@ -83,22 +89,29 @@ class Transfer extends Database
       $this->run_query('INSERT INTO files VALUES (NULL, :file_name, 0, NOW(), :zip_name, :sender_id)', ['file_name' => $file_name, 'zip_name' => $zip_name, 'sender_id' => $sender_id]);
 
       // format mail
-      $messages = 'Filename: '. $zip_name . PHP_EOL . '<br>';
-      $messages .= 'Sender: ' . $sender . PHP_EOL . '<br>';
+      $messages = 'Sender: ' . $sender . PHP_EOL . '<br>';
       $messages .= 'Receiver: '. $receiver . PHP_EOL . '<br>';
       $messages .= 'Message: '. $message . PHP_EOL . '<br>';
-      $messages .= 'Download link: <a href="http://localhost/files-transfer/download.php?file=' . $zip_name . '">Files</a>';
+      $messages .= 'Download link: <a href="' . url() . DIRECTORY_SEPARATOR . 'download.php?file=' . $zip_name . '">Files</a>';
 
-      $subject = 'File sent via Transfer';
+      $subject = 'File sent via Transfer it';
 
       mail($sender, $subject, $messages);
       mail($receiver, $subject, $messages);
 
       $array = [
         'form' => $form,
-        'errors' => $error_msg,
+        'errors' => '',
         'subject' => $subject,
         'messages' => $messages
+      ];
+      echo json_encode($array);
+    } else {
+      $array = [
+        'form' => $form,
+        'errors' => $error_msg,
+        'subject' => '',
+        'messages' => ''
       ];
       echo json_encode($array);
     }
