@@ -1,40 +1,14 @@
-<?php include 'header.php'; ?>
+<?php
+require_once('include/auto_class_loader.php');
 
-<section>
-  <form id="uploadForm" action="transfer.php" method="POST" enctype="multipart/form-data"
-  onsubmit="AJAXSubmit(this); return false;">
-    <fieldset>
-      <legend>Upload</legend>
-      <p>
-        Files:<br>
-        <input type="file" multiple name="files[]">
-      </p>
-      <p>
-        Sender email:<br>
-        <input type="email" name="sender-email"/>
-      </p>
-      <p>
-        Receiver email:<br>
-        <input type="email" name="receiver-email" />
-      </p>
-      <p>
-        Message:<br>
-        <textarea name="email-message" cols="50" rows="8"></textarea>
-      </p>
-      <p>
-        <button type="submit" name"send-button">Send</button>
-      </p>
-    </fieldset>
-  </form>
-</section>
-<section>
-  <fieldset>
-    <legend>Mail format</legend>
-    <p id="demo1"></p>
-    <p id="demo2"></p>
-    <p id="demo3"></p>
-    <p id="demo4"></p>
-  </fieldset>
-</section>
+if (($_SERVER['REQUEST_URI'] === '/') || ($_SERVER['REQUEST_URI'] === '')) {
+  TransferController::transfer_form();
+} elseif ($_SERVER['REQUEST_URI'] === '/download') {
+  DownloadController::download_file($_GET['file']);
+} elseif ($_SERVER['REQUEST_URI'] === '/error') {
+  // error page
+} else {
+  TransferController::transfer_form();
+}
 
-<?php include 'footer.php'; ?>
+// require_once('include/auto_js_loader.php');
