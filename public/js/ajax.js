@@ -1,14 +1,16 @@
 function ajaxResponse() {
   console.log(this.responseText); // just for debugging
   const RESPONSE = JSON.parse(this.responseText);
-  console.log(RESPONSE);
-  
+  console.log(RESPONSE); // just for debugging
+
+  document.getElementById('mailContainer').classList.remove('hidden');
+
   if (RESPONSE['form'] === 'transfer-form') {
-    document.getElementById('demo1').innerHTML = RESPONSE['errors'];
-    document.getElementById('demo2').innerHTML = RESPONSE['subject'];
-    document.getElementById('demo3').innerHTML = RESPONSE['messages'];
+    document.getElementById('errors').innerHTML = RESPONSE['errors'];
+    document.getElementById('subject').innerHTML = RESPONSE['subject'];
+    document.getElementById('messages').innerHTML = RESPONSE['messages'];
   } else if (RESPONSE['form'] === 'download-form') {
-    document.getElementById('demo1').innerHTML = RESPONSE['message'];
+    document.getElementById('messages').innerHTML = RESPONSE['message'];
   }
 }
 

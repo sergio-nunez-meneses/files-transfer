@@ -100,16 +100,17 @@ class TransferController
       $file_name = preg_replace('/\\.[^.\\s]{3,4}$/', '', $zip_name);
 
       // store sender in db and get its id
-      $sender_id = TransferModel::store_sender($sender);
+      $sender_id = (new TransferModel())->store_sender($sender);
 
       // store file in db
-      TransferModel::store_file($sender_id);
+      (new TransferModel())->store_file($file_name, $zip_name, $sender_id);
 
       // format mail
       $messages = 'Sender: ' . $sender . PHP_EOL . '<br>';
       $messages .= 'Receiver: '. $receiver . PHP_EOL . '<br>';
       $messages .= 'Message: '. $message . PHP_EOL . '<br>';
-      $messages .= 'Download link: <a href="' . url() . '/download?file=' . $zip_name . '">Files</a>';
+      // $messages .= 'Download link: <a href="' . url() . '/download?file=' . $zip_name . '">Files</a>';
+      $messages .= 'Download link: <a href="/download?file=' . $zip_name . '">Files</a>';
 
       $subject = 'File sent via Transfer it';
 

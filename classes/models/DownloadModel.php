@@ -3,12 +3,12 @@
 class DownloadModel extends Database
 {
 
-  public static function get_file_info()
+  public function get_file_info()
   {
-    //
+    // code...
   }
-  
-  public static function get_file_link()
+
+  public function get_file_link($link)
   {
     $stmt = $this->run_query('SELECT file_link FROM files WHERE file_link = :link', ['link' => $link]);
     $file = $stmt->fetch();

@@ -7,14 +7,14 @@
   <meta content="Sergio Núñez Meneses" name="author">
   <link rel="icon" type="image/png" href="public/img/favicon.png">
   <link rel="stylesheet" href="public/css/normalize.css">
-  <link rel="stylesheet" href="public/css/style.css">
+  <link rel="stylesheet" href="public/less/style.css">
   <title><?php echo $title; ?></title>
 </head>
 <body>
 
   <header>
     <fieldset>
-      <legend>Transfer it</legend>
+      <legend>Transfer IT!</legend>
       <p>Send files up to 4Go</p>
     </fieldset>
   </header>
@@ -30,6 +30,6 @@
     </fieldset>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="public/js/ajax.js"></script>
 </body>
 </html>

@@ -2,10 +2,10 @@
 
 class DownloadController
 {
-  public static function download_link()
+  public static function download_form()
   {
     // DownloadModel::get_file_info();
-    DownloadView::display();
+    // DownloadView::display();
   }
 
   public static function download_file($link)
@@ -24,7 +24,7 @@ class DownloadController
     if ($error === FALSE)
     {
       // get file link
-      $file = DownloadModel::get_file_link();
+      $file = DownloadModel::get_file_link($link);
       $file_link = $file['file_link'];
 
       // download file

@@ -30,18 +30,17 @@ class TransferView
             <textarea name="email-message" cols="50" rows="8"></textarea>
           </p>
           <p>
-            <button type="submit" name"send-button">Send</button>
+            <button type="button" name"send-button">Send</button>
           </p>
         </fieldset>
       </form>
     </section>
-    <section>
+    <section id="mailContainer" class="hidden">
       <fieldset>
         <legend>Mail format</legend>
-        <p id="demo1"></p>
-        <p id="demo2"></p>
-        <p id="demo3"></p>
-        <p id="demo4"></p>
+        <p id="errors"></p>
+        <p id="subject"></p>
+        <p id="messages"></p>
       </fieldset>
     </section>
     <?php
