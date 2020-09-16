@@ -1,14 +1,13 @@
 <?php
 require_once('include/auto_class_loader.php');
 
-$page = explode('/', $_SERVER['REQUEST_URI']);
-// echo url();
+$url = explode('/', $_GET['url']);
 
-if (isset($page) === TRUE) {
-  if ($page[1] === '' || $page[1] === 'transfer') {
+if (isset($url) === TRUE) {
+  if ($url[0] === '' || $url[0] === 'transfer') {
     TransferController::get_view();
-  } elseif ($page[1] === 'download') {
-    DownloadController::get_view($_GET['file']);
+  } elseif ($url[0] === 'download') {
+    DownloadController::get_view();
   } else {
     TransferController::get_view();
   }

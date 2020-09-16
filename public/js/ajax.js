@@ -22,7 +22,7 @@ function ajaxResponse() {
 function ajax(form) {
   let xhr = new XMLHttpRequest();
 
-  xhr.open('POST', 'actions/ajaxQuery.php');
+  xhr.open('POST', 'files-transfer/actions/ajaxQuery.php');
   xhr.send(form);
 
   xhr.onload = ajaxResponse;
@@ -37,7 +37,6 @@ function query(queryName, formElement) {
 
 function isJSON(responseText)
 {
-  console.log(responseText);
   if (typeof responseText !== 'string') {
     return false;
   } else if (responseText.charAt(0) !== '{') {

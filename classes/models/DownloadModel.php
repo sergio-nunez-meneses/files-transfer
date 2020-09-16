@@ -9,9 +9,4 @@ class DownloadModel extends Database
     $file = $stmt->fetch();
     return $file;
   }
-
-  public function check_link_date()
-  {
-    // code...
-  }
 }

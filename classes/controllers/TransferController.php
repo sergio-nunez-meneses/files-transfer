@@ -120,8 +120,8 @@ class TransferController
       $messages = 'Sender: ' . $sender . PHP_EOL . '<br>';
       $messages .= 'Receiver: '. $receiver . PHP_EOL . '<br>';
       $messages .= 'Message: '. $message . PHP_EOL . '<br>';
-      $messages .= 'Download link: <a href="' . url() . '/download?file=' . $zip_name . '" target="_blank">Files</a>';
-      // $messages .= 'Download link: <a href="/download?file=' . $zip_name . '">Files</a>';
+      // $messages .= 'Download link: <a href="' . url() . '/download?file=' . $zip_name . '" target="_blank">Files</a>';
+      $messages .= 'Download link: <a href="' . url() . '/download.php?file=' . $zip_name . '" target="_blank">Files</a>';
 
       $subject = 'File(s) sent via Transfer IT';
 

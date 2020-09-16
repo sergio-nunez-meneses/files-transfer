@@ -4,7 +4,7 @@ class DownloadController
 {
   public static function get_view()
   {
-    return DownloadView::display($_GET['file']);
+    return DownloadView::display();
   }
 
   public static function download_file($link)
@@ -22,7 +22,7 @@ class DownloadController
     if ($error === FALSE)
     {
       // get file link
-      $file = DownloadModel::get_file_link($link);
+      $file = (new DownloadModel)->get_file_link($link);
       $file_link = $file['file_link'];
 
       // download file
@@ -37,11 +37,11 @@ class DownloadController
       readfile($file_link);
       ob_flush();
 
-      $response = [
-        'form' => $form,
-        'message' => 'file downloaded'
-      ];
-      return $response;
+      // $response = [
+      //   'form' => $form,
+      //   'message' => 'file downloaded'
+      // ];
+      // return $response;
     }
   }
 }

@@ -11,7 +11,7 @@ class MainController
     }
     elseif ($query === 'download_file')
     {
-      $response = DownloadController::download_file();
+      DownloadController::download_file($_POST['link']);
     }
 
     if (empty($response) === FALSE)
