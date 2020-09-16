@@ -10,37 +10,47 @@ class TransferView
     ?>
     <section>
       <form id="uploadForm"
-      method="POST" enctype="multipart/form-data" onsubmit="ajaxQuery(query('transfer_file', this));">
+      method="POST" enctype="multipart/form-data" onsubmit="ajax(query('transfer_file', this)); return false;">
         <fieldset>
           <legend>Upload</legend>
-          <p>
-            Files:<br>
-            <input type="file" multiple name="files[]">
+          <p class="lead">
+            Files:
+            <div class="form-group">
+              <input class="form-control" type="file" multiple name="files[]">
+            </div>
+          </p>
+          <p class="lead">
+            Sender email:
+            <div class="form-group">
+              <input class="form-control" type="email" name="sender-email">
+            </div>
+          </p>
+          <p class="lead">
+            Receiver email:
+            <div class="form-groupe">
+              <input class="form-control" type="email" name="receiver-email">
+            </div>
+          </p>
+          <p class="lead">
+            Message:
+            <div class="form-group">
+              <textarea class="form-control" name="email-message" cols="50" rows="8"></textarea>
+            </div>
           </p>
           <p>
-            Sender email:<br>
-            <input type="email" name="sender-email"/>
-          </p>
-          <p>
-            Receiver email:<br>
-            <input type="email" name="receiver-email" />
-          </p>
-          <p>
-            Message:<br>
-            <textarea name="email-message" cols="50" rows="8"></textarea>
-          </p>
-          <p>
-            <button type="button" name"send-button">Send</button>
+            <div class="form-group">
+              <button class="btn btn-lg btn-dark text-white" type="submit" name"send-button">Send</button>
+            </div>
           </p>
         </fieldset>
       </form>
     </section>
-    <section id="mailContainer" class="hidden">
+    <section id="mailContainer" class="d-none">
       <fieldset>
         <legend>Mail format</legend>
-        <p id="errors"></p>
-        <p id="subject"></p>
-        <p id="messages"></p>
+        <p id="errors" class="lead"></p>
+        <p id="subject" class="lead"></p>
+        <p id="messages" class="lead"></p>
       </fieldset>
     </section>
     <?php

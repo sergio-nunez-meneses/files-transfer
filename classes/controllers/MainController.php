@@ -9,10 +9,14 @@ class MainController
     {
       $response = TransferController::transfer_file();
     }
+    elseif ($query === 'download_file')
+    {
+      $response = DownloadController::download_file();
+    }
 
     if (empty($response) === FALSE)
     {
-      echo $response;
+      echo json_encode($response);
     }
   }
 }

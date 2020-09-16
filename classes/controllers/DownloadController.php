@@ -2,10 +2,9 @@
 
 class DownloadController
 {
-  public static function download_form()
+  public static function get_view()
   {
-    // DownloadModel::get_file_info();
-    // DownloadView::display();
+    return DownloadView::display($_GET['file']);
   }
 
   public static function download_file($link)
@@ -13,7 +12,6 @@ class DownloadController
     $form = 'download-form';
     $error = FALSE;
     $error_msg = '';
-
 
     if (empty($link))
     {
@@ -39,11 +37,11 @@ class DownloadController
       readfile($file_link);
       ob_flush();
 
-      $array = [
+      $response = [
         'form' => $form,
         'message' => 'file downloaded'
       ];
-      echo json_encode($array);
+      return $response;
     }
   }
 }
