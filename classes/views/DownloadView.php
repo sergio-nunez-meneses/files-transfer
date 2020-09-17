@@ -1,4 +1,5 @@
 <?php
+require_once('functions/functions.php');
 
 class DownloadView
 {
@@ -9,15 +10,7 @@ class DownloadView
     ob_start();
     ?>
     <section>
-      <form id="download-form" method="POST" enctype="multipart/form-data" onsubmit="ajax(query('download_file', this)); return false;">
-        <fieldset>
-          <!-- <legend>Download</legend> -->
-          <div class="form-group">
-            <input type="hidden" name="link" value="<?php echo $_GET['file']; ?>">
-            <button class="btn btn-lg bg-dark text-white" type="submit" name="download-button">Download</button>
-          </div>
-        </fieldset>
-      </form>
+      <a class="btn btn-md bg-dark text-white" href="<?php echo url() . '/actions/download.php?file=' . $_GET['file']; ?>">Download</a>
     </section>
     <?php
     $content = ob_get_clean();

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 17, 2020 at 01:52 AM
+-- Generation Time: Sep 17, 2020 at 11:21 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -32,6 +32,7 @@ CREATE TABLE `files` (
   `file_name` varchar(100) NOT NULL,
   `file_content` longblob NOT NULL,
   `sent_date` datetime NOT NULL,
+  `expiration_date` datetime NOT NULL,
   `file_link` varchar(200) NOT NULL,
   `sender_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -72,13 +73,13 @@ ALTER TABLE `senders`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `senders`
 --
 ALTER TABLE `senders`
-  MODIFY `sender_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `sender_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- Constraints for dumped tables

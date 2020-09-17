@@ -12,8 +12,8 @@ class TransferModel extends Database
     return $last_sender_id['sender_id'];
   }
 
-  public function store_file($file_name, $zip_name, $sender_id)
+  public function store_file($file_name, $file_link, $sender_id)
   {
-    $this->run_query('INSERT INTO files VALUES (NULL, :file_name, 0, NOW(), :zip_name, :sender_id)', ['file_name' => $file_name, 'zip_name' => $zip_name, 'sender_id' => $sender_id]);
+    $this->run_query('INSERT INTO files VALUES (NULL, :file_name, 0, NOW(), DATE_ADD(NOW(), INTERVAL 1 Week), :file_link, :sender_id)', ['file_name' => $file_name, 'file_link' => $file_link, 'sender_id' => $sender_id]);
   }
 }

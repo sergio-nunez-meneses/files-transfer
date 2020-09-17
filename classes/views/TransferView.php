@@ -45,14 +45,6 @@ class TransferView
         </fieldset>
       </form>
     </section>
-    <section id="mailContainer" class="d-none">
-      <fieldset>
-        <legend>Mail format</legend>
-        <p id="errors" class="lead"></p>
-        <p id="subject" class="lead"></p>
-        <p id="messages" class="lead"></p>
-      </fieldset>
-    </section>
     <?php
     $content = ob_get_clean();
     require('templates/template.php');

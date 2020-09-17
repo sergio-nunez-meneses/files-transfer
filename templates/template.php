@@ -22,6 +22,14 @@
 
     <main>
       <?php echo $content; ?>
+      <section id="mailContainer" class="d-none">
+        <fieldset>
+          <legend>Mail format</legend>
+          <p id="errors" class="lead"></p>
+          <p id="subject" class="lead"></p>
+          <p id="messages" class="lead"></p>
+        </fieldset>
+      </section>
     </main>
 
     <footer>

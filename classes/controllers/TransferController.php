@@ -5,7 +5,7 @@ class TransferController
 {
   public static function get_view()
   {
-    return TransferView::display();
+    TransferView::display();
   }
 
   public static function transfer_file()
@@ -108,6 +108,7 @@ class TransferController
     {
       // remove .zip extension
       $file_name = preg_replace('/\\.[^.\\s]{3,4}$/', '', $zip_name);
+      // $file_link = url() . '/download.php?file=' . $zip_name;
 
       $transfer = new TransferModel();
       // store sender in db and get its id
@@ -120,8 +121,9 @@ class TransferController
       $messages = 'Sender: ' . $sender . PHP_EOL . '<br>';
       $messages .= 'Receiver: '. $receiver . PHP_EOL . '<br>';
       $messages .= 'Message: '. $message . PHP_EOL . '<br>';
-      // $messages .= 'Download link: <a href="' . url() . '/download?file=' . $zip_name . '" target="_blank">Files</a>';
-      $messages .= 'Download link: <a href="' . url() . '/download.php?file=' . $zip_name . '" target="_blank">Files</a>';
+      // $messages .= 'Download link: <a href="' . dirname(url()) . '/download&file=' . $file_name . '">Files</a>';
+      $messages .= 'Download link: <a href="' . dirname(url()) . '/download?file=' . $zip_name . '">Files</a>';
+      // $messages .= 'Download link: <a href="' . url() . '/download.php?file=' . $zip_name . '">Files</a>';
 
       $subject = 'File(s) sent via Transfer IT';
 
